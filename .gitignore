@@ -1,2 +1,5 @@
-# ignore all log files
+# ignore all latex junk files
 *.log
+*.synctex.gz
+*.aux
+
