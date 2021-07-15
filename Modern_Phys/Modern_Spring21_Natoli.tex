@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{url,amsfonts, amsmath, amssymb, amsthm, graphicx, braket, fancyhdr, physics, mathtools}
+\graphicspath{ {./QM_Images/} }
+% Page layout
+\setlength{\textheight}{8.75in}
+\setlength{\columnsep}{2.0pc}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0.0in}
+\setlength{\headsep}{0.0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\parindent}{1pc}
+
+% Commands
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\usepackage[a4paper,margin=2.5cm,portrait, headsep=24pt, headheight=2cm]{geometry}
+\usepackage{enumitem}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Page \thepage}
+\chead{Modern Physics DE}
+\lhead{James Natoli}
+\rfoot{}
+
+\begin{document}
+% suppress header on first page
+\thispagestyle{empty}
+%%% Title Stuff
+\begin{center}\Large \textbf{Modern Physics Departmental Exam} \\
+\normalsize James Natoli \\  January 2021
+\end{center}
+
+%%%%%%%%%%%%%%%%% Problem  1 %%%%%%%%%%%%%%%%%
+\section*{Problem 1} 
+% Problem Statement
+The muon is an unstable particle that spontaneously decays into an electron and two neutrinos. If the number of muons at $t=0$ is $N_0$, the number at time $t$ is given by $N=N_0e^\frac{t}{\tau}$, where $\tau$ is the mean lifetime, equal to 2.2 $\mu$s. Suppose the muons move at a speed of $0.95c$ and there are $5.0 \cdot 10^4$ muons at $t=0$
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	What is the observed lifetime of the muons?
+	\item % PART(B)
+	How many muons remain after traveling a distance of 3.0 km?
+\end{enumerate}
+%% Solution Here
+\section*{\textit{Solution}} 
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	This is a time dilation problem, just need to know the formula
+	$$ t' = \gamma t $$
+	where $\gamma = \frac{1}{\sqrt{1 - (v/c)^2}}$, $t'$ is the dilated time, and $t$ is the regular time
+	$$ t' = 2.2 \times \frac{1}{\sqrt{1 - (0.95)^2}}$$
+	$$ t' = 7.0456 \text{ }\mu s$$
+	To help check your answer, it should always be a longer time than the regular time
+	\item % PART (B)
+	The muons will see a shorter distance, due to length contraction
+	$$ L' = \frac{L}{\gamma} $$ 
+	where $\gamma$ is same as before, $L'$ is the contracted length, and $L$ is the regular length
+	$$ L' = 3\times 10^3 \cdot \sqrt{1 - 0.95^2} $$
+	$$ L' = 936.75 \text{ m} $$
+	We need a time for the formula given in the prompt, $N=N_0e^\frac{t}{\tau}$, so we need to find the time it takes for the muons to travel $L'$ at $0.95c$
+	$$ \frac{L'}{v} = \text{ time } = \frac{936.75}{0.95c} = 3.28 \cdot 10^{-6} \text{ s}$$
+	$$ N(t) = N_0e^\frac{t}{\tau} = 5\cdot 10^{4} \cdot e^\frac{3.28 \cdot 10^{-6}}{2.2\cdot10^{-6}} $$
+	$$ N(3.28 \cdot 10^{-6}) = 1.1223 \cdot 10^4 \text{ muons}$$
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%% Problem 2 %%%%%%%%%%%%%%%%%
+\section*{Problem 2} 
+% Problem Statement
+X-ray photons of wavelength 0.02580 nm are incident on a target and the Compton-scattered photons are observed at $90^{\circ}$
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	What is the wavelength of the scattered photons?
+	\item % PART (B)
+	What is the momentum of the incident photons? Of the scattered photons?
+	\item % PART (C)
+	What is the kinetic energy of the scattered electrons?
+	\item % PART (D)
+	What is the momentum (magnitude and direction) of the scattered electrons?
+\end{enumerate}
+%% Solution Here
+\section*{\textit{Solution}} 
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%% Problem  %%%%%%%%%%%%%%%%%
+\section*{Problem } 
+% Problem Statement
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+\end{enumerate}
+%% Solution Here
+\section*{\textit{Solution}} 
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
