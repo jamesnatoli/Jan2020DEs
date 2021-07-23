@@ -16,7 +16,17 @@
 % Commands
 \newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\Lagr}{\mathcal{L}} % Lagrangian
-\newcommand{\vcurl}[1]{\vec{\nabla}\times \vec{#1}}
+\newcommand{\vcurl}[1]{\vec{\nabla}\times \vec{#1}} % Curl with vector notation
+\newcommand{\fhalf}{\frac{1}{2}} % 1/2 fraction
+% Shortcut for general Euler-Lagrange Equation
+\newcommand{\EulLagreq}{\dv{}{t} \left( \pdv{ \Lagr}{\dot{x_i}} \right) &= \pdv{\Lagr}{x_i}}
+% Trig Shorts
+\newcommand{\sinth}{\sin{\theta}}
+\newcommand{\costh}{\cos{\theta}}
+\newcommand{\cotth}{\cot{\theta}}
+\newcommand{\tanth}{\tan{\theta}}
+\newcommand{\cscth}{\csc{\theta}}
+\newcommand{\secth}{\sec{\theta}}
 
 \usepackage[a4paper,margin=2.5cm,portrait, headsep=24pt, headheight=2cm]{geometry}
 \usepackage{enumitem}
@@ -434,9 +444,229 @@ Next we are asked to find the potential associated with this. You might be able 
 	\int \frac{kQq}{r^2}\hat{r} \cdot dr &= V \\ 
 	\Aboxed{ \frac{kQq}{r} &= V(r), \text{as expected}}
 \end{align}
-%%%%%%%%%%%%%%%%% Problem 12%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Problem 12 %%%%%%%%%%%%%%%%%
 \section*{Problem 12} 
 % Problem Statement
+A small coin is placed on the top of frictionless sphere of radius R. The coin is given a tiny push and begins to slide down the sphere. At what vertical distance below the top of the sphere does the coin leave the surface of the sphere?
+%% Solution Here
+\begin{figure}[h]
+	\includegraphics[scale=0.35]{P12}
+	\centering
+\end{figure}
+\section*{\textit{Solution}} 
+Hopefully the diagram above makes sense. We are trying to find the vertical distance at which the coin loses contact with the surface. The easiest way to do this will be to work in polar coordinates, then covert back at the end to cartesian. I believe there's a way to do this one with a Lagrangian, however conservation of energy should work just fine. \\
+\\
+\begin{align}
+	\intertext{Let's start by defining what we are solving for}
+	\Delta y &= y_f - y_i \\ 
+	\Delta y &= R\cos{\theta} - R \\ 
+	\Delta y &= -R(1 - \cos{\theta}) 
+	\intertext{And now let's apply conservation of energy, with only kinetic and gravitational potential to worry about, we should have...}
+	E_i = E_f \hspace{1cm}\Longrightarrow& \hspace{1cm}mgh_i = \frac{1}{2}mv^2 + mgh_f \\
+	-\frac{1}{2}mv^2 &= mgh_f  - mgh_i \\ 
+	 &= mg\Delta h \\
+	 &= mg\Delta y \\ 
+	 &= -mgR(1 - \cos{\theta}) \\ 
+	v^2 &= 2gR(1 - \cos{\theta})
+	\intertext{Alright, that's nice and juicy, let's think about Forces now. Before the coin falls off, it is exhibiting circular motion, so its acceleration will be centripetal}
+	\Sigma F = ma_c &= \frac{mv^2}{R} \\ 
+	\Sigma F = F_g &= mg\cos{\theta} \\
+	v^2 &= Rg\cos{\theta} 
+	\intertext{Where in (136), we combined (134) and (135). Now we'll substitute this definition of $v^2$ in (133)}
+	2gR(1 - \cos{\theta}) &= Rg\cos{\theta} \\ 
+	2 - 2\cos{\theta} &= \cos{\theta} \\ 
+	2 &= 3\cos{\theta} \\ 
+	\cos{\theta} &= \frac{2}{3}
+	\intertext{We can take this result from (140) and combine it with (127) now}
+	\Delta y &= -R(1 - \frac{2}{3}) \\ 
+	\Aboxed{\Delta y &= \frac{-R}{3}}
+\end{align}
+So when the coin has slid one-third of the radius down, it will lose contact with the surface of the sphere. The negative sign is just because we're measuring distance \underline{from the top} of the sphere
+%%%%%%%%%%%%%%%%% Problem 13 %%%%%%%%%%%%%%%%%
+\section*{Problem13 } 
+% Problem Statement
+Consider a mass m moving in two dimensions with potential energy $V(x,y)=k(x^2+y^2)/2,k>0$. In the Cartesian (x,y) coordinate system, write down the Lagrangian and derive the two Lagrange equations of motion. Describe the solutions of the equations of motion
+%% Solution Here
+\section*{\textit{Solution}} 
+\begin{align}
+	\intertext{We're given the potential, so let's get right after the Lagrangian}
+	\Lagr = T - V &= \fhalf m(\dot{x}^2 \dot{y}^2) - \frac{k(x^2+y^2)}{2}
+	\intertext{Quick refresher on the general form of Euler-Lagrange Equations}
+	\EulLagreq \\
+	\text{Do x variable first }\rightarrow \hspace{3cm} \Aboxed{m\ddot{x} &= -kx} \\ 
+	\text{Now y variable }\rightarrow \hspace{3cm} \Aboxed{m\ddot{y} &= -ky}
+\end{align}
+You probably recognize these differential equations, because they represent simple harmonic motion! They are solved by sin() and cos() functions
+%%%%%%%%%%%%%%%%% Problem 14 %%%%%%%%%%%%%%%%%
+\section*{Problem 14} 
+% Problem Statement
+A mass $m$ is attached by a massless string of length $l$ to the tip of a frictionless cone with vertex half-angle $\theta$. For the case when the mass moves at speed $v$ in a horizontal circle on the surface of the cone, find:
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	The tension in the string
+	\item % PART (B)
+	The nornal force on the mass from the cone
+	\item % PART (C)
+	The maximum speed $v$ for which the mass stays in contact with the cone
+\end{enumerate}
+\begin{figure}[h]
+	\includegraphics[scale=0.30]{P14_setup}
+	\centering
+\end{figure}
+\begin{figure}[h]
+	\includegraphics[scale=0.30]{P14_coords}
+	\centering
+\end{figure}
+\begin{figure}[h]
+	\includegraphics[scale=0.30]{P14_FBD}
+	\centering
+\end{figure}
+
+%% Solution Here
+\section*{\textit{Solution}} 
+Ok, super weird situation, hopefully the following diagrams help visualize what in the world is going on. I chose not to use Lagrange approach for this and kinda just stuck with components and force analysis. For the rest of this problem, I'm also going to define my axis such that x is \underline{in to} the cone and y is \underline{straight up}. This will make things easier (I hope) \\ 
+\\
+Note: This is a variation on the Conical Pendulum problem, which there are lots of resources for \href{https://en.wikipedia.org/wiki/Conical_pendulum}{(Wiki Link)}. Basically just that with an added normal force, so if none of this is making sense (which it didn't to me), try to work through that simpler problem first, and then add a little spice
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	I'm gonna do (a) and (b) kinda together, just how it came out when I did this. Alrighty, the first thing to notice is that because the mass is traveling in a circular path, it will have centripetal acceleration
+	\begin{align}
+	\Sigma F_x &= ma_c = \frac{mv^2}{r} \\ 
+	\Sigma F_x &= F_{Tx} + F_{Nx} = T\sin{\theta} - N\cos{\theta} \\
+	&= T\sin{\theta} - N\cos{\theta} \\
+	\Sigma F_y &= 0 = F_{Ty} + F_{gy} + F_{Ny} =  T\cos{\theta} + N\sin{\theta} - mg \\ 
+	&=  T\cos{\theta} + N\sin{\theta} - mg \\ 
+	T\cos{\theta} + N\sin{\theta} &= mg \\
+	\intertext{Let's also get the radius r in terms of something better, and combine (147) with (149)}
+	r &= l\sinth \\ 
+	T\sin{\theta} - N\cos{\theta} &= \frac{mv^2}{l\sinth}\\ 
+	\intertext{Now we can solve for T and yeet it in to (152), then follow the yellow brick road and solve for N}
+	T &= \frac{mv^2}{l\sin^2{\theta}} + N\cot{\theta} \\ 
+	mg &= \left( \frac{mv^2}{l\sin^2{\theta}} + N\frac{\costh}{\sinth}\right)\costh + N\sinth \\ 
+	\intertext{Now we're going to divide both sides by $\costh$, for reasons that will become obvious (I hate when people do this)}
+	\frac{mg}{\costh} &= \frac{mv^2}{l\sin^2{\theta}} + N\frac{\costh}{\sinth} + N\tan{\theta} \\ 
+	\frac{mg}{\costh} &= \frac{mv^2}{l\sin^2{\theta}} + N\cot{\theta} + N\tan{\theta} \\
+	\frac{mg}{\costh} &= \frac{mv^2}{l\sin^2{\theta}} + N(\cot{\theta} + \tan{\theta}) \\ 
+	\intertext{There's a handy little Trig Identity that will help us now, getting close!}
+	\cotth + \tanth &= \cscth \secth = \frac{1}{\costh \sinth} \\
+	\frac{mg}{\costh} &= \frac{mv^2}{l\sin^2{\theta}} + \frac{N}{\costh \sinth} \\
+	N &= \costh \sinth \left( \frac{mg}{\costh} - \frac{mv^2}{l\sin^2{\theta}} \right) \\
+	\Aboxed{ N &= mg\sinth - \frac{mv^2}{l}\left( \frac{\costh}{\sinth} \right)} \\
+	\intertext{So this is actually the answer to (b), oops, but for (a) all we need to do it take (164) and plug it in to (155), then solve for T, which I'll do right now :) }
+	T &= \frac{mv^2}{l\sin^2{\theta}} + \left( mg\sinth - \frac{mv^2}{l}\frac{\costh}{\sinth} \right) \cot{\theta} \\
+	T &= \frac{mv^2}{l\sin^2{\theta}} + mg\sinth \left( \frac{\costh}{\sinth} \right) - \frac{mv^2}{l} \left( \frac{\cos^2{\theta}}{\sin^2{\theta}} \right) \\
+	T &= \frac{mv^2}{l\sin^2{\theta}} - \frac{mv^2}{l\sin^2{\theta}} \left( \cos^2{\theta}\right) + mg\sinth \left( \frac{\costh}{\sinth} \right) \\ 
+	T &= \frac{mv^2}{l\sin^2{\theta}} \left(1 - \cos^2{\theta} \right) + mg\costh  \\ 
+	\intertext{Now let's use a more familiar Trig Identity, $1 - \cos^2{\theta} = \sin^2{\theta}$}
+	T &= \frac{mv^2}{l\sin^2{\theta}} \left(\sin^2{\theta} \right) + mg\costh \\
+	\Aboxed{T &= \frac{mv^2}{l} + mg\costh}
+	\end{align}
+So we arrived at them out of order, but I think if you solve (154) for N, then yeet it in to (152), you'll get Tension first for (a). Either way, most of the work is in setting this up, then the two trig identities. 
+	\item % PART (B)
+	Just reproducing the result here for easy access
+	\boxed{ N = mg\sinth - \frac{mv^2}{l}\left( \frac{\costh}{\sinth} \right)} 
+	\item % PART (C)
+	Ugh, somehow we have more to do. Alright, so for the maximum velocity before lifting off, that will be at the moment when the Normal Force equals zero, because the cone no longer has to push back on the mass at all. So let's start by setting the result from (b) equal to zero and solving for $v$
+	\begin{align}
+		mg\sinth - \frac{mv^2}{l}\left( \frac{\costh}{\sinth} \right) &= 0 \\
+		\frac{mv^2}{l}\left( \frac{\costh}{\sinth} \right) &= mg\sinth \\ 
+		v^2 &= \frac{gl\sin^2{\theta}}{\costh} \\
+		\Aboxed{v &= \sqrt{ \frac{gl\sin^2{\theta}}{\costh} } }
+	\end{align}
+And here we've arrived at the maximum velocity, looks pretty nice, I'm surprised!
+\end{enumerate}
+%%%%%%%%%%%%%%%%% Problem 15 %%%%%%%%%%%%%%%%%
+\section*{Problem 15} 
+% Problem Statement
+A pendulum bob of mass m is suspended by a massless spring (of unextended length l) with spring constant k. Derive the Lagrangian equations of motion.
+\begin{figure}[h]
+	\includegraphics[scale=0.30]{P15}
+	\centering
+\end{figure}
+%% Solution Here
+\section*{\textit{Solution}} 
+Alright, alright, alright... most of the work in this is in setting up the coordinate system and then writing out the Lagrangian. After that we have smooth sailing on the Euler-Lagrange Express \\ 
+\\
+Note: There are lots of good resources on this, just search for Elastic Pendulum, here's the \href{https://en.wikipedia.org/wiki/Elastic_pendulum}{Wiki Link} \\ 
+\\
+For our coordinates, we're going have an x-direction that is radially outwards, so along the spring, and a $\theta$-direction which is angular, in the direction the mass is swinging back and forth. You can call the x-direction the r-direction, not sure why I chose x but here we are
+\begin{align}
+	\Lagr &= T - V \\
+	\intertext{For the Kinetic term, we have one linear term and one angular term}
+	T &= \fhalf m\dot{x}^2 + \fhalf m x^2 \dot{\theta}^2
+	\intertext{And for the Potential term, we have to account for the gravitational potential as well as the spring potential}
+	V &= -mgx\costh + \fhalf k(x - l)^2
+	\intertext{The gravity term we had to use a little trig, and the spring term is set up so that if $x=l$, and is therefore unstretched, there will be no potential energy, as expected}
+	\Lagr &= \fhalf m\dot{x}^2 + \fhalf m x^2 \dot{\theta}^2 + mgx\costh - \fhalf k(x - l)^2 \\
+	\EulLagreq \\
+	\intertext{Now we can start taking derivatives, all aboard!!!}
+	 m\ddot{x} &= mx\dot{\theta}^2 + mg\costh - k(x - l) \\ 
+	 \Aboxed{\ddot{x} &= x\dot{\theta}^2 + g\costh - \frac{k}{m}(x - l) }\\
+	 \intertext{Got the x equation of motion, now for $\theta$}
+	mx^2\ddot{\theta} + 2m\dot{x}x\dot{\theta} &= - mgx\sinth \\
+	mx^2\ddot{\theta} &= -2m\dot{x}x\dot{\theta} - mgx\sinth \\ 
+	\Aboxed{\ddot{\theta} &= \frac{-2\dot{x}\dot{\theta}}{x} - \frac{g\sinth}{x}}
+\end{align}
+I apologize for doing this a little differently than the Wiki, if you use $x = x_w + l$, where $x_w$ is Wikipedia's x variable, you can see that it's the same. They used x as the distance from equilibrium, whereas I chose to make it the absolute radial distance from the hinge, just use whichever makes more sense to you
+%%%%%%%%%%%%%%%%% Problem 16%%%%%%%%%%%%%%%%%
+\section*{Problem 16} 
+% Problem Statement
+After a lengthy space flight, you have just landed on Planet X. Near the point where you are standing on the surface of Planet X, the gravitational force on a mass $m$ is vertically down but has a magnitude of $m\gamma y^2$, where $\gamma$ is a constant and y is the mass's height above the horizontal ground
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	Find the work done by gravity on a mass m moving from $\textbf{r}_1$ to $\textbf{r}_2$, and use your answer to show that gravity on Planet X, although most unusual, is still conservative
+	\item % PART (B)
+	Still on the same planet, you thread a bead on a curved, frictionless, rigid wire, which extends from ground level to a height $h$ above the ground. Show clearly the forces on the bead when it is somewhere on the wire. (Just name the forces so it is clear what they are; don't worry about their magnitude.) Which of the forces are conservative and which are not?
+	\item % PART (C)
+	If you release the bead from rest at height $h$, how fast will it be going when it reaches the ground?
+\end{enumerate}
+%% Solution Here
+\section*{\textit{Solution}} 
+What a weird problem. There are a couple different schools of thought on this one, and I honestly think if you explain your answer confidently, you'd get most credit. 
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+	Ok, for a force to be conservative, it can't be path-dependent. That means that the work done is the same moving from one point to another, regardless of how we got there. So first, we'll find the work from $\vec{r}_1$ to $\vec{r}_2$
+	\begin{align}
+	\Delta W &= \int \vec{F}\cdot d\vec{l} \\ 
+	&= \int_{\vec{r}_1}^{\vec{r}_2} m\gamma y^2 dy \\
+	&= \frac{m\gamma}{3}(\vec{r}_2 - \vec{r}_1)
+	\end{align}
+From this, we can see that if $\vec{r}_1 = \vec{r}_2$, $\Delta W = 0$. This means our force is conservative. And if that wasn't good enough for you, try taking the curl of $\vec{F}$
+	\begin{align}
+	\vec{F} &= m\gamma y^2 \hat{y} \\ 
+	\vcurl{F} &= \left(\pdv{F_z}{y} - \pdv{F_y}{z} \right) - \left( \pdv{F_z}{x} - \pdv{F_x}{z} \right) + \left( \pdv{F_y}{x} - \pdv{F_x}{y} \right) \\
+	F_x = F_y &= \pdv{F_y}{x} = \pdv{F_y}{z} = 0 \\ 
+	\vcurl{F} &= 0 
+	\end{align}	
+A conservative force by definition is irrotational
+	\item % PART (B)
+	Here's where things get dicey. We are asked to list the forces and state whether or not they are conservative. I've included a Free Body Diagram of how I picture this weird bead on a wire situation
+	\begin{figure}[h]
+	\includegraphics[scale=0.30]{P16}
+	\centering
+	\end{figure}
+	From what I can see, there are only 2 forces: Gravity acting down always, and a Normal Force acting perpendicular to the wire (or perpendicular to the tangent of the curve). If the bead is traveling in a circular motion, then these forces could act like a centripetal force, but I don't think that just tells us what form $F=ma$ will take, and is not a separate force, ya dig?
+	\begin{itemize}
+		\item
+		$F_g$: Gravitational Force is conservative, as proved in (A)
+		\item
+		$F_N$: Normal Force is also conservative, because it is built from $F_g$
+	\end{itemize}
+	\item % PART(C)
+	Ok, now for some speeeeed. There's probably a Lagrangian approach for this, but let's not be too spicy and just do our normal conservation of energy
+	\begin{align}
+		V_i + T_i &= V_f + T_f \\ 
+		h\cdot F_g + 0 &= 0 + \fhalf mv^2 \\ 
+		h(m\gamma y^2) &= \fhalf mv^2 \\ 
+		h(\gamma h^2 &= \fhalf v^2 \\
+		v^2 &= 2\gamma h^3 \\
+		v &= \sqrt{2\gamma h^3}
+	\end{align}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%% Problem 17 %%%%%%%%%%%%%%%%%
+\section*{Problem 17} 
+% Problem Statement
 \begin{enumerate}[label=\alph*)]
 	\item % PART (A)
 \end{enumerate}
@@ -446,7 +676,7 @@ Next we are asked to find the potential associated with this. You might be able 
 	\item % PART (A)
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%% Problem   %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Problem %%%%%%%%%%%%%%%%%
 \section*{Problem } 
 % Problem Statement
 \begin{enumerate}[label=\alph*)]
@@ -458,19 +688,7 @@ Next we are asked to find the potential associated with this. You might be able 
 	\item % PART (A)
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%% Problem   %%%%%%%%%%%%%%%%%
-\section*{Problem } 
-% Problem Statement
-\begin{enumerate}[label=\alph*)]
-	\item % PART (A)
-\end{enumerate}
-%% Solution Here
-\section*{\textit{Solution}} 
-\begin{enumerate}[label=\alph*)]
-	\item % PART (A)
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%% Problem   %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Problem %%%%%%%%%%%%%%%%%
 \section*{Problem } 
 % Problem Statement
 \begin{enumerate}[label=\alph*)]
