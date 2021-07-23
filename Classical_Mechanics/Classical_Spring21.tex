@@ -660,12 +660,123 @@ A conservative force by definition is irrotational
 		h(m\gamma y^2) &= \fhalf mv^2 \\ 
 		h(\gamma h^2 &= \fhalf v^2 \\
 		v^2 &= 2\gamma h^3 \\
-		v &= \sqrt{2\gamma h^3}
+		\Aboxed{v &= \sqrt{2\gamma h^3}}
 	\end{align}
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%% Problem 17 %%%%%%%%%%%%%%%%%
 \section*{Problem 17} 
+% Problem Statement
+The potential energy of two atoms in a molecule can sometimes be approximated by the Morse function
+\[ U(r) = A\left[ (e^{(R-r)/S} - 1)^2 - 1 \right] \]
+where r is the distance between the two atoms and $A, R,$ and $S$ are positive constants with $S<<R$. Sketch the function for $0<r<\infty$. Find the equilibrium separation $r_0$, at which $U(r)$ is a minimum. Now write $r = r_0 + x$ so that $x$ is the displacement from equilibrium, and show that, for small displacements, $U$ has approximate form $U = constant + kx^2/2$. That is, Hooke's law applies. What is the force constant $k$?
+%% Solution Here
+\section*{\textit{Solution}} 
+Ok first, here's a sketch of what it should look like. You can plot it and see for your self, or just google the Morse potential.
+\begin{figure}[h]
+	\includegraphics[scale=0.20]{P17}
+	\centering
+\end{figure}
+Next we need to find the equilibrium separation $r_0$, which means taking a derivative of $U(r)$ and setting it equal to zero.
+\begin{align}
+	U(r) &= A\left[ (e^{(R-r)/S} - 1)^2 - 1 \right] \\
+	\dv{U(r)}{r} &= A\left[ 2 \left( \frac{-1}{S} \right) \left( e^{\frac{R-r}{S}} - 1 \right) \left(e^{\frac{R-r}{S}} \right) \right] = 0 \\ 
+	0 &= \frac{-2A}{S} \left( e^{\frac{R-r}{S}} - 1 \right) \left(e^{\frac{R-r}{S}} \right) \\ 
+	e^{\frac{R-r}{S}} &= 1 \\
+	\ln\left({e^{\frac{R-r}{S}}}\right) &= \ln\left( {1}\right) \\ 
+	\frac{R-r}{S} &= 0 \\
+	\Aboxed{r_0 &= R}
+\end{align}
+Now, they want us to rewrite $r = r_0 + x$ and show that for small displacements, U looks like Hooke's Law. We can see that this will be true, by looking at the diagram. The area right to the right and left of the potential minimum is mostly parabolic. For this, we will also use the above result that $R = r_0$
+\begin{align}
+	U(r_0 + x) &= A\left[ (e^{(r_0 - (r_0 + x))/S} - 1)^2 - 1 \right] \\
+	&= A\left[ (e^{-x/S} - 1)^2 - 1 \right] \\
+	&= A\left[ (e^{-2x/S} -2e^{-x/S} + 1) - 1 \right] \\
+	&= A\left[ e^{-2x/S} -2e^{-x/S} \right]
+	\intertext{As we always do when we're stuck, let's Taylor Expand $e^x$ and see what comes out. We'll use (208) in place of the two terms in (207)}
+	e^x &\approx 1 + x + \frac{x^2}{2} + \cdots \\
+	U(r_0 + x) &= A\left[ \left(1 + \frac{-2x}{S} + \fhalf \left(\frac{-2x}{S}\right)^2 \right) - 2\left(1 + \frac{-x}{S} + \fhalf\left(\frac{-x}{S}\right)^2 \right)\right]\\
+	&= A\left[ 1 - 2 + \frac{-2x}{S} + 2\frac{x}{S} + \fhalf \left(\frac{4x^2}{S^2}\right) -2\left( \fhalf \left( \frac{-x}{S}\right)^2 \right) \right] \\
+	&= A\left[ -1 + \frac{2x^2}{S^2} - \frac{x^2}{S^2} \right] \\
+	&= A\left[\frac{x^2}{S^2} - 1 \right]
+	\intertext{Hopefully we're all still standing after that quirky quagmire, but now all that's left is to get it in the form of Hooke's Law}
+	U(r_0 + x) &= \frac{Ax^2}{S^2} - A \\ 
+	&= -A + \frac{A}{S^2}x^2 \\ 
+	\Aboxed{&= -A + \fhalf \left(\frac{2A}{S^2}\right)x^2}
+\end{align}
+So (215) is in the form of $U = constant + kx^2/2$, where our spring constant \boxed{k = \frac{2A}{S^2}}
+%%%%%%%%%%%%%%%%% Problem 18 %%%%%%%%%%%%%%%%%
+\section*{Problem 18} 
+% Problem Statement
+The force on a mass m at position x on the x axis if $F=F_0\sinh{\alpha x}$ where $F_0$ and $\alpha$ are positive constants. Find the potential energy $U(x)$, and give an approximation for $U(x)$ suitable for small oscillations. What is the angular frequency of such oscillations?
+%% Solution Here
+\section*{\textit{Solution}} 
+We're given a force, and so we'll use our handy dandy formula that Force is the gradient of potential
+\begin{align}
+	-{\nabla}U &= F \\ 
+	U(x) &= -\int F(x)dx \\
+	U(x) &= F_0 \int \sinh{\alpha x} \\
+	\Aboxed{U(x) &= \frac{-F_0}{\alpha}\cosh{\alpha x} + c}
+	\intertext{Ok so how that we have the potential, we can go about finding an approximation for small oscillations. I've been pavlovv'd in to immediately thinking "Taylor Series" when I hear "small approximation, so let's try that, but only to the second order}
+	\cosh{x} &\approx \Sigma \frac{x^{2n}}{(2n)}! \approx 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \cdots \\
+	U(x) &\approx \frac{-F_0}{\alpha} \left( 1 + \frac{(\alpha x)^2}{2} + \cdots \right) \\ 
+	&\approx \frac{-F_0}{\alpha} - \frac{F_0 x^2}{2}
+	\intertext{We want the frequency of oscillation, so let's compare the $x^2$ term to the standard potential form of oscillatory motion, $\fhalf m \omega^2 x^2$}
+	 \fhalf m \omega^2 x^2 &= \frac{F_0 x^2}{2} \\
+	\omega^2 &= \frac{F_0 \alpha}{m} \\ 
+	\Aboxed{\omega &= \sqrt{\frac{F_0 \alpha}{m}}}
+\end{align}
+And here we've arrived at a nice looking frequency of oscillation :)
+%%%%%%%%%%%%%%%%% Problem 19 %%%%%%%%%%%%%%%%%
+\section*{Problem 19} 
+% Problem Statement
+You are told that, at known positions $x_1$ and $x_2$, an oscillating mass m has speeds $v_1$ and $v_2$. What are the amplitude and angular frequency of the oscillations?
+%% Solution Here
+\section*{\textit{Solution}} 
+Ok, not a lot of info here, but the basic strategy will be using the general kinematic form of oscillating motion to develop a system of equations using the two sets of points
+\begin{align}
+	\intertext{An object moving in 1 dimension has it's motion described by the following equation}
+	x(t) = A\sin{\omega t + \phi}
+	\intertext{So applying this to our two points, we get these two equations}
+	x_1 = A\sin({\omega t_1 + \phi}) \\
+	x_2 = A\sin({\omega t_2 + \phi})
+	\intertext{}
+	\dot{x_1} = v_1 = \omega A\cos({\omega t_1 + \phi}) \\
+	\dot{x_2} = v_2 = \omega A\cos({\omega t_2 + \phi}) \\
+	\intertext{To solve these, we'll square them, and then add them. Why we do this, I have no idea but it works. Squaring does allows us to get the trig functions in a better form though. To be specific, we will square (227) and (229), then add them, after moving $\omega$ over in (229)}
+	x_{1}^2 &= A^2\sin^2({\omega t_1 + \phi}) \\
+	+ \hspace{7mm} \frac{v_{1}^2}{\omega^2} &= A^2\cos^2({\omega t_1 + \phi}) \\ 
+	\cline{1-2}
+	x_{1}^2 + \frac{v_{1}^2}{\omega^2} &= A^2 \left(\cos^2({\omega t_1 + \phi}) + \sin^2({\omega t_1 + \phi}) \right) \\
+	\Aboxed{x_{1}^2 + \frac{v_{1}^2}{\omega^2} &= A^2}
+	\intertext{The $x_2$ and $v_2$ will follow the exact same format, which you can check for yourself but I'll just print again below}
+	\Aboxed{x_{2}^2 + \frac{v_{2}^2}{\omega^2} &= A^2}
+	\intertext{Seeing as (234) and (235) both equal $A^2$, we can set them equal to each other, and then try to solve for $\omega$}
+	x_{1}^2 + \frac{v_{1}^2}{\omega^2} &= x_{2}^2 + \frac{v_{2}^2}{\omega^2} \\
+	x_{1}^2 - x_{2}^2 &= \frac{1}{\omega^2} (v_{2}^2 - v_{1}^2) \\
+	\omega^2 (x_{1}^2 - x_{2}^2) &= (v_{2}^2 - v_{1}^2) \\
+	\omega^2 &= \frac{v_{2}^2 - v_{1}^2}{x_{1}^2 - x_{2}^2} \\ 
+	\Aboxed{\omega &= \sqrt{\frac{v_{2}^2 - v_{1}^2}{x_{1}^2 - x_{2}^2} }}
+	\intertext{You might have gotten a different subtraction on top/bottom, but just make sure that they are opposite each other. That is, the top is the opposite order of subtraction than the bottom. We need the amplitude now, but we can use (240) and plug it in to (234) to solve for A}
+	A^2 &= x_{1}^2 + \frac{v_{1}^2}{\omega^2} \\
+	A^2 &= x_{1}^2 + \frac{v_{1}^2}{\left(\frac{v_{2}^2 - v_{1}^2}{x_{1}^2 - x_{2}^2} \right)} \\
+	\Aboxed{A &= \sqrt{v_{1}^2 \left(\frac{x_{1}^2 - x_{2}^2}{v_{2}^2 - v_{1}^2} \right) + x_{1}^2 } }
+\end{align}
+
+%%%%%%%%%%%%%%%%% Problem %%%%%%%%%%%%%%%%%
+\section*{Problem } 
+% Problem Statement
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+\end{enumerate}
+%% Solution Here
+\section*{\textit{Solution}} 
+\begin{enumerate}[label=\alph*)]
+	\item % PART (A)
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%% Problem %%%%%%%%%%%%%%%%%
+\section*{Problem } 
 % Problem Statement
 \begin{enumerate}[label=\alph*)]
 	\item % PART (A)
